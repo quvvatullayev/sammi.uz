@@ -23,3 +23,11 @@ class NewsImg(models.Model):
 
     def __str__(self):
         return self.news.name
+
+class Video(models.Model):
+    name = models.CharField(max_length=100)
+    url = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+        
