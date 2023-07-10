@@ -39,4 +39,11 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.name
+    
+class GalleryImg(models.Model):
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE)
+    img = models.ImageField(upload_to='gallery_img')
+
+    def __str__(self):
+        return self.gallery.name
 
