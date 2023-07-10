@@ -64,4 +64,14 @@ class Ad(models.Model):
 
     def __str__(self):
         return self.name
+    
+class MainStatistic(models.Model):
+    techer = models.IntegerField(default=0)
+    student = models.IntegerField(default=0)
+    foreign_student = models.IntegerField(default=0)
+    finished_student = models.IntegerField(default=0)
+
+    def __str__(self):
+        return 'Main Statistic'
+    
 
