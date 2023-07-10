@@ -81,4 +81,10 @@ class Quiz(models.Model):
     def __str__(self):
         return self.question
     
+class UsefulSites(models.Model):
+    name = models.CharField(max_length=100)
+    img = models.ImageField(upload_to='useful_sites_img')
+    url = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
