@@ -16,3 +16,10 @@ class News(models.Model):
 
     def __str__(self):
         return self.name
+    
+class NewsImg(models.Model):
+    news = models.ForeignKey(News, on_delete=models.CASCADE)
+    img = models.ImageField(upload_to='news_img')
+
+    def __str__(self):
+        return self.news.name
