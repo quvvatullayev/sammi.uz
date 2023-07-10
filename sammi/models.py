@@ -56,4 +56,12 @@ class VideoGallery(models.Model):
     def __str__(self):
         return self.name
 
+class Ad(models.Model):
+    name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    sees = models.IntegerField(default=0)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
 
