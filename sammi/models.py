@@ -31,3 +31,12 @@ class Video(models.Model):
     def __str__(self):
         return self.name
         
+class Gallery(models.Model):
+    name = models.CharField(max_length=100)
+    img = models.ImageField(upload_to='gallery_img')
+    created_at = models.DateTimeField(auto_now_add=True)
+    sees = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
