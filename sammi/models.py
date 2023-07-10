@@ -88,3 +88,21 @@ class UsefulSites(models.Model):
 
     def __str__(self):
         return self.name
+
+class Contact(models.Model):
+    telegram = models.CharField(max_length=100)
+    instagram = models.CharField(max_length=100)
+    facebook = models.CharField(max_length=100)
+    youtube = models.CharField(max_length=100)
+    twitter = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    phone1 = models.CharField(max_length=100)
+    phone2 = models.CharField(max_length=100)
+    email1 = models.CharField(max_length=100)
+    email2 = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+
+    def __str__(self):
+        return 'Contact'
+    
+        
