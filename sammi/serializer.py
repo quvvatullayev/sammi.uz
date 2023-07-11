@@ -23,3 +23,9 @@ class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = '__all__'
+
+class NewsImgSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewsImg
+        fields = '__all__'
+
