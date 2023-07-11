@@ -54,4 +54,9 @@ class AdSerializer(serializers.ModelSerializer):
         model = Ad
         fields = '__all__'
 
+class MainStatisticSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MainStatistic
+        fields = '__all__'
+
 
