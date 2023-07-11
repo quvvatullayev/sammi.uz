@@ -49,4 +49,9 @@ class VideoGallerySerializer(serializers.ModelSerializer):
         model = VideoGallery
         fields = '__all__'
 
+class AdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ad
+        fields = '__all__'
+
 
