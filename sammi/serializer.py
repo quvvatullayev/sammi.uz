@@ -69,4 +69,9 @@ class UsefulSitesSerializer(serializers.ModelSerializer):
         model = UsefulSites
         fields = '__all__'
 
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
 
