@@ -38,6 +38,11 @@ class GallerySerializer(serializers.ModelSerializer):
     class Meta:
         model = Gallery
         fields = '__all__'
+
+class GalleryImgSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GalleryImg
+        fields = '__all__'
         
 
 
