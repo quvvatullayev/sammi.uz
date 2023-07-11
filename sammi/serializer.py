@@ -43,6 +43,10 @@ class GalleryImgSerializer(serializers.ModelSerializer):
     class Meta:
         model = GalleryImg
         fields = '__all__'
-        
+
+class VideoGallerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VideoGallery
+        fields = '__all__'
 
 
