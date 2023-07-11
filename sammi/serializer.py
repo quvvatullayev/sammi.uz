@@ -64,4 +64,9 @@ class QuizSerializer(serializers.ModelSerializer):
         model = Quiz
         fields = '__all__'
 
+class UsefulSitesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UsefulSites
+        fields = '__all__'
+
 
