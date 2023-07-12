@@ -63,3 +63,11 @@ urlpatterns += [
     path('video/delete/<int:pk>/', VideoDeleteView.as_view()),
 ]
 
+from .view.gallery import (
+    GalleryCreateView,
+    GalleryListView,
+    GalleryDetailView,
+    GalleryUpdateView,
+    GalleryDeleteView,
+)
+
