@@ -95,3 +95,20 @@ urlpatterns += [
     path('galleryimg/delete/<int:pk>/', GalleryImgDeleteView.as_view()),
 ]
 
+from .view.videogallery import (
+    VideoGalleryCreateView,
+    VideoGalleryListView,
+    VideoGalleryDetailView,
+    VideoGalleryUpdateView,
+    VideoGalleryDeleteView,
+)
+
+urlpatterns += [
+    path('videogallery/create/', VideoGalleryCreateView.as_view()),
+    path('videogallery/list/', VideoGalleryListView.as_view()),
+    path('videogallery/detail/<int:pk>/', VideoGalleryDetailView.as_view()),
+    path('videogallery/update/<int:pk>/', VideoGalleryUpdateView.as_view()),
+    path('videogallery/delete/<int:pk>/', VideoGalleryDeleteView.as_view()),
+]
+
+
