@@ -4,16 +4,16 @@ from rest_framework.request import Request
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 from ..models import (
-    Video,
+    GalleryImg,
 )
 from ..serializers import (
-    VideoSerializer,
+    GalleryImgSerializer,
 )
 
-class VideoCreateView(APIView):
-    @swagger_auto_schema(request_body=VideoSerializer)
+class GalleryImgCreateView(APIView):
+    @swagger_auto_schema(request_body=GalleryImgSerializer)
     def post(self, request: Request, format=None):
-        serializer = VideoSerializer(data=request.data)
+        serializer = GalleryImgSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -25,34 +25,33 @@ class VideoCreateView(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 
-
-class VideoListView(APIView):
+class GalleryImgListView(APIView):
     @swagger_auto_schema(
             responses={
-                200: VideoSerializer(many=True)
+                200: GalleryImgSerializer(many=True)
                 }
             )
     def get(self, request: Request, format=None):
-        videos = Video.objects.all()
-        serializer = VideoSerializer(videos, many=True)
+        galleryimgs = GalleryImg.objects.all()
+        serializer = GalleryImgSerializer(galleryimgs, many=True)
         return Response(serializer.data)
     
-class VideoDetailView(APIView):
+class GalleryImgDetailView(APIView):
     @swagger_auto_schema(
             responses={
-                200: VideoSerializer()
+                200: GalleryImgSerializer()
                 }
             )
     def get(self, request: Request, pk, format=None):
-        video = Video.objects.get(pk=pk)
-        serializer = VideoSerializer(video)
+        galleryimg = GalleryImg.objects.get(pk=pk)
+        serializer = GalleryImgSerializer(galleryimg)
         return Response(serializer.data)
     
-class VideoUpdateView(APIView):
-    @swagger_auto_schema(request_body=VideoSerializer)
+class GalleryImgUpdateView(APIView):
+    @swagger_auto_schema(request_body=GalleryImgSerializer)
     def put(self, request: Request, pk, format=None):
-        video = Video.objects.get(pk=pk)
-        serializer = VideoSerializer(video, data=request.data)
+        galleryimg = GalleryImg.objects.get(pk=pk)
+        serializer = GalleryImgSerializer(galleryimg, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -64,17 +63,17 @@ class VideoUpdateView(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
     
-class VideoDeleteView(APIView):
+class GalleryImgDeleteView(APIView):
     def delete(self, request: Request, pk, format=None):
-        video = Video.objects.get(pk=pk)
-        video.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        galleryimg = GalleryImg.objects.get(pk=pk)
+        galleryimg.delete()
+        return Response(
+            {
+                'message': 'galleryimg deleted successfully'
+            },
+            status=status.HTTP_204_NO_CONTENT
+        )
     
     
-        
-        
-        
-        
-        
         
     

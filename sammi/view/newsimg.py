@@ -7,7 +7,7 @@ from ..models import (
     News,
     NewsImg,
 )
-from ..serializer import (
+from ..serializers import (
     NewsSerializer,
     NewsImgSerializer,
 )

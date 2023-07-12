@@ -6,7 +6,7 @@ from drf_yasg.utils import swagger_auto_schema
 from ..models import (
     Gallery,
 )
-from ..serializer import (
+from ..serializers import (
     GallerySerializer,
 )
 
