@@ -71,3 +71,27 @@ from .view.gallery import (
     GalleryDeleteView,
 )
 
+urlpatterns += [
+    path('gallery/create/', GalleryCreateView.as_view()),
+    path('gallery/list/', GalleryListView.as_view()),
+    path('gallery/detail/<int:pk>/', GalleryDetailView.as_view()),
+    path('gallery/update/<int:pk>/', GalleryUpdateView.as_view()),
+    path('gallery/delete/<int:pk>/', GalleryDeleteView.as_view()),
+]
+
+from .view.galleryimg import (
+    GalleryImgCreateView,
+    GalleryImgListView,
+    GalleryImgDetailView,
+    GalleryImgUpdateView,
+    GalleryImgDeleteView,
+)
+
+urlpatterns += [
+    path('galleryimg/create/', GalleryImgCreateView.as_view()),
+    path('galleryimg/list/', GalleryImgListView.as_view()),
+    path('galleryimg/detail/<int:pk>/', GalleryImgDetailView.as_view()),
+    path('galleryimg/update/<int:pk>/', GalleryImgUpdateView.as_view()),
+    path('galleryimg/delete/<int:pk>/', GalleryImgDeleteView.as_view()),
+]
+
