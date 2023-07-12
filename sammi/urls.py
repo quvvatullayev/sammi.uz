@@ -46,3 +46,20 @@ urlpatterns += [
     path('newsimg/update/<int:pk>/', NewsImgUpdateView.as_view()),
     path('newsimg/delete/<int:pk>/', NewsImgDeleteView.as_view()),
 ]
+
+from .view.video import (
+    VideoCreateView,
+    VideoListView,
+    VideoDetailView,
+    VideoUpdateView,
+    VideoDeleteView,
+)
+
+urlpatterns += [
+    path('video/create/', VideoCreateView.as_view()),
+    path('video/list/', VideoListView.as_view()),
+    path('video/detail/<int:pk>/', VideoDetailView.as_view()),
+    path('video/update/<int:pk>/', VideoUpdateView.as_view()),
+    path('video/delete/<int:pk>/', VideoDeleteView.as_view()),
+]
+
