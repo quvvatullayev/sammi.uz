@@ -111,4 +111,19 @@ urlpatterns += [
     path('videogallery/delete/<int:pk>/', VideoGalleryDeleteView.as_view()),
 ]
 
+from .view.ad import (
+    AdCreateView,
+    AdListView,
+    AdDetailView,
+    AdUpdateView,
+    AdDeleteView,
+)
+
+urlpatterns += [
+    path('ad/create/', AdCreateView.as_view()),
+    path('ad/list/', AdListView.as_view()),
+    path('ad/detail/<int:pk>/', AdDetailView.as_view()),
+    path('ad/update/<int:pk>/', AdUpdateView.as_view()),
+    path('ad/delete/<int:pk>/', AdDeleteView.as_view()),
+]
 
