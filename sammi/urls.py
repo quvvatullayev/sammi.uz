@@ -191,6 +191,23 @@ urlpatterns += [
     path('usefulsites/delete/<int:pk>/', UsefulSitesDeleteViews.as_view()),
 ]
 
+from .view.contact import (
+    ContactCreateView,
+    ContactListView,
+    ContactDetailView,
+    ContactUpdateView,
+    ContactDeleteView,
+)
+
+urlpatterns += [
+    path('contact/create/', ContactCreateView.as_view()),
+    path('contact/list/', ContactListView.as_view()),
+    path('contact/detail/<int:pk>/', ContactDetailView.as_view()),
+    path('contact/update/<int:pk>/', ContactUpdateView.as_view()),
+    path('contact/delete/<int:pk>/', ContactDeleteView.as_view()),
+]
+
+
 
 
 
