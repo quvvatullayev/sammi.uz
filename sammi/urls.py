@@ -143,6 +143,22 @@ urlpatterns += [
     path('mainstatistic/delete/<int:pk>/', MainStatisticDeleteViews.as_view()),
 ]
 
+from .view.quiz import (
+    QuizCreateViews,
+    QuizListViews,
+    QuizDetailViews,
+    QuizUpdateViews,
+    QuizDeleteViews,
+)
+
+urlpatterns += [
+    path('quiz/create/', QuizCreateViews.as_view()),
+    path('quiz/list/', QuizListViews.as_view()),
+    path('quiz/detail/<int:pk>/', QuizDetailViews.as_view()),
+    path('quiz/update/<int:pk>/', QuizUpdateViews.as_view()),
+    path('quiz/delete/<int:pk>/', QuizDeleteViews.as_view()),
+]
+
 
 
 
