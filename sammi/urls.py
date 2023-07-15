@@ -127,3 +127,22 @@ urlpatterns += [
     path('ad/delete/<int:pk>/', AdDeleteView.as_view()),
 ]
 
+from .view.mainstatistic import (
+    MainStatisticCreateViews,
+    MainStatisticListViews,
+    MainStatisticDetailViews,
+    MainStatisticUpdateViews,
+    MainStatisticDeleteViews,
+)
+
+urlpatterns += [
+    path('mainstatistic/create/', MainStatisticCreateViews.as_view()),
+    path('mainstatistic/list/', MainStatisticListViews.as_view()),
+    path('mainstatistic/detail/<int:pk>/', MainStatisticDetailViews.as_view()),
+    path('mainstatistic/update/<int:pk>/', MainStatisticUpdateViews.as_view()),
+    path('mainstatistic/delete/<int:pk>/', MainStatisticDeleteViews.as_view()),
+]
+
+
+
+
