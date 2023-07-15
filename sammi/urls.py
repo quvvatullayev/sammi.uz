@@ -207,6 +207,13 @@ urlpatterns += [
     path('contact/delete/<int:pk>/', ContactDeleteView.as_view()),
 ]
 
+from .view.home import (
+    HomeViews,
+)
+
+urlpatterns += [
+    path('home/', HomeViews.as_view()),
+]
 
 
 
