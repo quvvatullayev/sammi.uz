@@ -159,6 +159,23 @@ urlpatterns += [
     path('quiz/delete/<int:pk>/', QuizDeleteViews.as_view()),
 ]
 
+from .view.usefulsites import (
+    UsefulSitesCreateViews,
+    UsefulSitesListViews,
+    UsefulSitesDetailViews,
+    UsefulSitesUpdateViews,
+    UsefulSitesDeleteViews,
+)
+
+urlpatterns += [
+    path('usefulsites/create/', UsefulSitesCreateViews.as_view()),
+    path('usefulsites/list/', UsefulSitesListViews.as_view()),
+    path('usefulsites/detail/<int:pk>/', UsefulSitesDetailViews.as_view()),
+    path('usefulsites/update/<int:pk>/', UsefulSitesUpdateViews.as_view()),
+    path('usefulsites/delete/<int:pk>/', UsefulSitesDeleteViews.as_view()),
+]
+
+
 
 
 
