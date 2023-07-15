@@ -4,92 +4,84 @@ from rest_framework.request import Request
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 from ..models import (
-    UsefulSites,
+    Contact,
 )
 from ..serializers import (
-    UsefulSitesSerializer,
+    ContactSerializer,
 )
 
-class UsefulSitesCreateViews(APIView):
+class ContactCreateView(APIView):
     @swagger_auto_schema(
-        request_body=UsefulSitesSerializer,
-        operation_description="Create UsefulSites",
+        operation_description="Create Contact",
+        request_body=ContactSerializer,
         responses={
-            201: UsefulSitesSerializer,
+            200: ContactSerializer,
             400: "Bad Request"
         }
     )
     def post(self, request: Request):
-        serializer = UsefulSitesSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        contact_serializer = ContactSerializer(data=request.data)
+        if contact_serializer.is_valid():
+            contact_serializer.save()
+            return Response(contact_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(contact_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class UsefulSitesDetailViews(APIView):
+class ContactListView(APIView):
     @swagger_auto_schema(
-        operation_description="Get UsefulSites by id",
+        operation_description="Get all Contact",
         responses={
-            200: UsefulSitesSerializer,
-            404: "Not Found"
-        }
-    )
-    def get(self, request: Request, pk: int):
-        try:
-            usefulsites = UsefulSites.objects.get(pk=pk)
-        except UsefulSites.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        serializer = UsefulSitesSerializer(usefulsites)
-        return Response(serializer.data)
-    
-class UsefulSitesListViews(APIView):
-    @swagger_auto_schema(
-        operation_description="Get all UsefulSites",
-        responses={
-            200: UsefulSitesSerializer(many=True),
+            200: ContactSerializer(many=True),
             404: "Not Found"
         }
     )
     def get(self, request: Request):
-        usefulsites = UsefulSites.objects.all()
-        serializer = UsefulSitesSerializer(usefulsites, many=True)
-        return Response(serializer.data)
+        contact = Contact.objects.all()
+        contact_serializer = ContactSerializer(contact, many=True).data
+        return Response(contact_serializer, status=status.HTTP_200_OK)
     
-class UsefulSitesUpdateViews(APIView):
+class ContactDetailView(APIView):
     @swagger_auto_schema(
-        request_body=UsefulSitesSerializer,
-        operation_description="Update UsefulSites by id",
+        operation_description="Get single Contact",
         responses={
-            200: UsefulSitesSerializer,
+            200: ContactSerializer,
+            404: "Not Found"
+        }
+    )
+    def get(self, request: Request, pk: int):
+        contact = Contact.objects.get(pk=pk)
+        contact_serializer = ContactSerializer(contact).data
+        return Response(contact_serializer, status=status.HTTP_200_OK)
+    
+class ContactUpdateView(APIView):
+    @swagger_auto_schema(
+        operation_description="Update single Contact",
+        request_body=ContactSerializer,
+        responses={
+            200: ContactSerializer,
+            400: "Bad Request",
             404: "Not Found"
         }
     )
     def put(self, request: Request, pk: int):
-        try:
-            usefulsites = UsefulSites.objects.get(pk=pk)
-        except UsefulSites.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        serializer = UsefulSitesSerializer(usefulsites, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        print(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        contact = Contact.objects.get(pk=pk)
+        contact_serializer = ContactSerializer(contact, data=request.data)
+        if contact_serializer.is_valid():
+            contact_serializer.save()
+            return Response(contact_serializer.data, status=status.HTTP_200_OK)
+        return Response(contact_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class UsefulSitesDeleteViews(APIView):
+class ContactDeleteView(APIView):
     @swagger_auto_schema(
-        operation_description="Delete UsefulSites by id",
+        operation_description="Delete single Contact",
         responses={
-            204: "No Content",
+            200: "OK",
             404: "Not Found"
         }
     )
     def delete(self, request: Request, pk: int):
-        try:
-            usefulsites = UsefulSites.objects.get(pk=pk)
-        except UsefulSites.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        usefulsites.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        contact = Contact.objects.get(pk=pk)
+        contact.delete()
+        return Response(status=status.HTTP_200_OK)
+    
+    
     
