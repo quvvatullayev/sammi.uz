@@ -24,3 +24,16 @@ class UserCreateView(APIView):
                 status=status.HTTP_201_CREATED,
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class UserLoginView(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request:Request) -> Response:
+        user = request.user
+        token = Token.objects.create(user=user)
+        return Response(
+            {
+                'user': UserSerializer(user).data,
+                'token': token.key,
+            },
+            status=status.HTTP_200_OK,
+        )
