@@ -219,12 +219,14 @@ from .view.user import (
     UserCreateView,
     UserLoginView,
     UserLogoutView,
+    UserCreateAdminView,
 )
 
 urlpatterns += [
     path('user/create/', UserCreateView.as_view()),
     path('user/login/', UserLoginView.as_view()),
     path('user/logout/', UserLogoutView.as_view()),
+    path('user/createadmin/<int:pk>/', UserCreateAdminView.as_view()),
 ]
 
 

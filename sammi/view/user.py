@@ -44,3 +44,14 @@ class UserLogoutView(APIView):
         user = request.user
         Token.objects.filter(user=user).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class UserCreateAdminView(APIView):
+    authentication_classes = [TokenAuthentication]
+    def post(self, request:Request, pk:int) -> Response:
+        if request.user.is_superuser:
+            user = User.objects.get(pk=pk)
+            user.is_staff = True
+            user.save()
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
