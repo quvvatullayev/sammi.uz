@@ -50,8 +50,21 @@ class UserCreateAdminView(APIView):
     def post(self, request:Request, pk:int) -> Response:
         if request.user.is_superuser:
             user = User.objects.get(pk=pk)
+            user.is_superuser = True
             user.is_staff = True
             user.save()
             return Response(status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
+        
+class UserDeleteAdminView(APIView):
+    authentication_classes = [TokenAuthentication]
+    def post(self, request:Request, pk:int) -> Response:
+        if request.user.is_superuser:
+            user = User.objects.get(pk=pk)
+            user.is_staff = False
+            user.save()
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        
