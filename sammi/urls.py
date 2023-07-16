@@ -215,6 +215,14 @@ urlpatterns += [
     path('home/', HomeViews.as_view()),
 ]
 
+from .view.user import (
+    UserCreateView,
+)
+
+urlpatterns += [
+    path('user/create/', UserCreateView.as_view()),
+]
+
 
 
 
