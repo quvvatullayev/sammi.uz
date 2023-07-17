@@ -55,6 +55,11 @@ class UserLoginView(APIView):
     
 class UserLogoutView(APIView):
     authentication_classes = [TokenAuthentication]
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_204_NO_CONTENT: 'No Content',
+        },
+    )
     def post(self, request:Request) -> Response:
         user = request.user
         Token.objects.filter(user=user).delete()
@@ -62,6 +67,13 @@ class UserLogoutView(APIView):
     
 class UserCreateAdminView(APIView):
     authentication_classes = [TokenAuthentication]
+    @swagger_auto_schema(
+        request_body=UserSerializer,
+        responses={
+            status.HTTP_201_CREATED: UserSerializer,
+            status.HTTP_400_BAD_REQUEST: 'Bad Request',
+        },
+    )
     def post(self, request:Request, pk:int) -> Response:
         if request.user.is_superuser:
             user = User.objects.get(pk=pk)
@@ -74,6 +86,13 @@ class UserCreateAdminView(APIView):
         
 class UserDeleteAdminView(APIView):
     authentication_classes = [TokenAuthentication]
+    @swagger_auto_schema(
+        request_body=UserSerializer,
+        responses={
+            status.HTTP_201_CREATED: UserSerializer,
+            status.HTTP_400_BAD_REQUEST: 'Bad Request',
+        },
+    )
     def post(self, request:Request, pk:int) -> Response:
         if request.user.is_superuser:
             user = User.objects.get(pk=pk)
@@ -85,6 +104,12 @@ class UserDeleteAdminView(APIView):
         
 class UserAdminListView(APIView):
     authentication_classes = [TokenAuthentication]
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_200_OK: UserSerializer,
+            status.HTTP_400_BAD_REQUEST: 'Bad Request',
+        },
+    )
     def get(self, request:Request) -> Response:
         if request.user.is_superuser:
             users = User.objects.all()
@@ -99,6 +124,12 @@ class UserAdminListView(APIView):
         
 class UserNontAdminListView(APIView):
     authentication_classes = [TokenAuthentication]
+    @swagger_auto_schema(
+        responses={
+            status.HTTP_200_OK: UserSerializer,
+            status.HTTP_400_BAD_REQUEST: 'Bad Request',
+        },
+    )
     def get(self, request:Request) -> Response:
         if request.user.is_superuser:
             users = User.objects.filter(is_staff=False)
