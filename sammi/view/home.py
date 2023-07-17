@@ -33,26 +33,26 @@ from ..serializers import (
 )
 
 class HomeViews(APIView):
-    @swagger_auto_schema(
-        operation_description="Get all Home",
-        responses={
-            200: {
-                "about_img": AboutImgSerializer,
-                "news": NewsSerializer(many=True),
-                "news_img": NewsImgSerializer(many=True),
-                "video": VideoSerializer(many=True),
-                "gallery": GallerySerializer(many=True),
-                "gallery_img": GalleryImgSerializer(many=True),
-                "video_gallery": VideoGallerySerializer(many=True),
-                "ad": AdSerializer(many=True),
-                "main_statistic": MainStatisticSerializer,
-                "quiz": QuizSerializer(many=True),
-                "useful_sites": UsefulSitesSerializer(many=True),
-                "contact": ContactSerializer(many=True),
-            },
-            404: "Not Found"
-        }
-    )
+    # @swagger_auto_schema(
+    #     operation_description="Get all Home",
+    #     responses={
+    #         200: {
+    #             "about_img": AboutImgSerializer,
+    #             "news": NewsSerializer(many=True),
+    #             "news_img": NewsImgSerializer(many=True),
+    #             "video": VideoSerializer(many=True),
+    #             "gallery": GallerySerializer(many=True),
+    #             "gallery_img": GalleryImgSerializer(many=True),
+    #             "video_gallery": VideoGallerySerializer(many=True),
+    #             "ad": AdSerializer(many=True),
+    #             "main_statistic": MainStatisticSerializer,
+    #             "quiz": QuizSerializer(many=True),
+    #             "useful_sites": UsefulSitesSerializer(many=True),
+    #             "contact": ContactSerializer(many=True),
+    #         },
+    #         404: "Not Found"
+    #     }
+    # )
     def get(self, request: Request):
         about_img = AboutImg.objects.all()
         about_img_serializer = AboutImgSerializer(about_img, many=True).data
