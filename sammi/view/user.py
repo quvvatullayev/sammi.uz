@@ -68,3 +68,17 @@ class UserDeleteAdminView(APIView):
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
         
+class UserAdminListView(APIView):
+    authentication_classes = [TokenAuthentication]
+    def get(self, request:Request) -> Response:
+        if request.user.is_superuser:
+            users = User.objects.all()
+            return Response(
+                {
+                    'users': UserSerializer(users, many=True).data,
+                },
+                status=status.HTTP_200_OK,
+            )
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        

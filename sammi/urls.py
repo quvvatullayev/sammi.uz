@@ -221,6 +221,7 @@ from .view.user import (
     UserLogoutView,
     UserCreateAdminView,
     UserDeleteAdminView,
+    UserAdminListView,
 )
 
 urlpatterns += [
@@ -229,6 +230,7 @@ urlpatterns += [
     path('user/logout/', UserLogoutView.as_view()),
     path('user/createadmin/<int:pk>/', UserCreateAdminView.as_view()),
     path('user/deleteadmin/<int:pk>/', UserDeleteAdminView.as_view()),
+    path('user/adminlist/', UserAdminListView.as_view()),
 ]
 
 
