@@ -35,6 +35,13 @@ class UserCreateView(APIView):
     
 class UserLoginView(APIView):
     permission_classes = [IsAuthenticated]
+    @swagger_auto_schema(
+        request_body=UserSerializer,
+        responses={
+            status.HTTP_200_OK: UserSerializer,
+            status.HTTP_400_BAD_REQUEST: 'Bad Request',
+        },
+    )
     def post(self, request:Request) -> Response:
         user = request.user
         token = Token.objects.create(user=user)
