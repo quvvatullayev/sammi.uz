@@ -82,3 +82,17 @@ class UserAdminListView(APIView):
         else:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
         
+class UserNontAdminListView(APIView):
+    authentication_classes = [TokenAuthentication]
+    def get(self, request:Request) -> Response:
+        if request.user.is_superuser:
+            users = User.objects.filter(is_staff=False)
+            return Response(
+                {
+                    'users': UserSerializer(users, many=True).data,
+                },
+                status=status.HTTP_200_OK,
+            )
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        
