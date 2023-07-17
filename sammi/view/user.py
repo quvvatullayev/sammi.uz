@@ -6,11 +6,19 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from drf_yasg.utils import swagger_auto_schema
 from ..serializers import (
     UserSerializer,
 )
 
 class UserCreateView(APIView):
+    @swagger_auto_schema(
+        request_body=UserSerializer,
+        responses={
+            status.HTTP_201_CREATED: UserSerializer,
+            status.HTTP_400_BAD_REQUEST: 'Bad Request',
+        },
+    )
     def post(self, request: Request) -> Response:
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
